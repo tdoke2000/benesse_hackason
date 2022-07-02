@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'weekly_task.dart';
 import 'daily_task.dart';
+import 'music.dart';
+import 'clock.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,12 +44,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'ZenKakuGothicNew'),
+      theme: ThemeData(fontFamily: 'ZenKakuGothicNew'), //オリジナルフォントの利用
       home: Home(List_Weekly,List_Daily),
       routes: {
         "/Home": (context) => Home(List_Weekly,List_Daily),
         "/WeeklyTask": (BuildContext context) => WeeklyTask(),
-        "/DailyTask": (BuildContext context) => DailyTask(map_weekly_name),
+        "/DailyTask": (BuildContext context) => DailyTask(),
+        "/Music": (BuildContext context) => AudioPlayerPage(List_Weekly,List_Daily),
+        "/Timer": (BuildContext context) => CountdownPage(List_Weekly,List_Daily),
       },
     );
   }
@@ -95,7 +99,8 @@ class _HomeState extends State<Home> {
             ListTile(
               title: Text('今日のto do選択'),
               onTap: () {
-                Navigator.pop(context);
+                //Navigator.pop(context)
+                Navigator.of(context).pushNamed("/Timer"); //動作確認も兼ねて仮設定
               },
             ),
             ListTile(
@@ -113,7 +118,8 @@ class _HomeState extends State<Home> {
             ListTile(
               title: Text('1週間のto doの編集'),
               onTap: () {
-                Navigator.pop(context);
+                //Navigator.pop(context)
+                Navigator.of(context).pushNamed("/Music"); //動作確認も兼ねて仮設定
               },
             ),
           ],
