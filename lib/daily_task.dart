@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 class DailyTask extends StatefulWidget {
+<<<<<<< HEAD
   const DailyTask({Key? key}) : super(key: key);
+=======
+  DailyTask(this.map_weekly_name);
+  Map map_weekly_name;
+
+>>>>>>> f9453928cb14ef58a9d9e5b508a45395574f1013
   @override
   State<DailyTask> createState() => _DailyTaskState();
 }
