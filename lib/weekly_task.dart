@@ -9,11 +9,44 @@ class WeeklyTask extends StatefulWidget {
 }
 
 class _WeeklyTaskState extends State<WeeklyTask> {
-  // List<String> Subject = [""];
-  // List<String> Unit = [""];
-  // List<String> Divided_num = [""];
+  List<String> List_Weekly = ["","",""];
+  List<String> List_Daily=["","",""];
+
+  String _Sub="";
+  String _Uni="";
+  String _Div="";
+
   int map_weekly_num = 0;
 
+<<<<<<< HEAD
+  // Map map_daily_name = {
+  // 0: {"Subject": "", "Unit": "", "Divid": ""},
+  // 1: {"Subject": "", "Unit": "", "Divid": ""},
+  // 2: {"Subject": "", "Unit": "", "Divid": ""},
+  // 3: {"Subject": "", "Unit": "", "Divid": ""},
+  // 4: {"Subject": "", "Unit": "", "Divid": ""},
+  // 5: {"Subject": "", "Unit": "", "Divid": ""},
+  // 6: {"Subject": "", "Unit": "", "Divid": ""},
+  // 7: {"Subject": "", "Unit": "", "Divid": ""},
+  // 8: {"Subject": "", "Unit": "", "Divid": ""},
+  // 9: {"Subject": "", "Unit": "", "Divid": ""},
+  // 10: {"Subject": "", "Unit": "", "Divid": ""},
+  // };
+
+  // Map map_weekly_name = {
+  //   0: {"Subject": "", "Unit": "", "Divid": ""},
+  //   1: {"Subject": "", "Unit": "", "Divid": ""},
+  //   2: {"Subject": "", "Unit": "", "Divid": ""},
+  //   3: {"Subject": "", "Unit": "", "Divid": ""},
+  //   4: {"Subject": "", "Unit": "", "Divid": ""},
+  //   5: {"Subject": "", "Unit": "", "Divid": ""},
+  //   6: {"Subject": "", "Unit": "", "Divid": ""},
+  //   7: {"Subject": "", "Unit": "", "Divid": ""},
+  //   8: {"Subject": "", "Unit": "", "Divid": ""},
+  //   9: {"Subject": "", "Unit": "", "Divid": ""},
+  //   10: {"Subject": "", "Unit": "", "Divid": ""},
+  // };
+=======
   Map map_daily_name = {
   0: {"Subject": "", "Unit": "", "Divid": ""},
   1: {"Subject": "", "Unit": "", "Divid": ""},
@@ -41,6 +74,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
     9: {"Subject": "", "Unit": "", "Divid": ""},
     10: {"Subject": "", "Unit": "", "Divid": ""},
   };
+>>>>>>> f9453928cb14ef58a9d9e5b508a45395574f1013
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -57,7 +91,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                 hintText: "科目",
               ),
               onChanged: (_Subject) {
-                map_weekly_name[map_weekly_num]["Subject"] = _Subject;
+                _Sub = _Subject;
               },
             ),
             TextField(
@@ -67,7 +101,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                 hintText: "単元",
               ),
               onChanged: (_Unit) {
-                map_weekly_name[map_weekly_num]["Unit"] = _Unit;
+                _Uni = _Unit;
               },
             ),
             TextField(
@@ -77,29 +111,28 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                 hintText: "分割数",
               ),
               onChanged: (_Divided) {
-                map_weekly_name[map_weekly_num]["Divid"] = _Divided;
+                _Div = _Divided;
               },
             ),
             ElevatedButton(
               child: Text("登録"),
               onPressed: () {
+                List_Weekly.addAll([_Sub,_Uni,_Div]);
                 print(
-                    "$map_weekly_num,${map_weekly_name[map_weekly_num]["Subject"]}");
-                map_weekly_num++;
+                    List_Weekly.length);
               },
             ),
             ElevatedButton(
               child: Text("決定"),
               onPressed: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   "/Home",
-                //   arguments: "map_weekly_name",
-                // );
                 Navigator.push(
                   context,
                   MaterialPageRoute(
+<<<<<<< HEAD
+                    builder: (BuildContext context) => Home(List_Weekly,List_Daily),
+=======
                     builder: (BuildContext context) => Home(map_weekly_name,map_daily_name),
+>>>>>>> f9453928cb14ef58a9d9e5b508a45395574f1013
                   ),
                 );
               },
