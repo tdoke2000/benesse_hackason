@@ -3,15 +3,18 @@ import 'main.dart';
 
 class DailyTask extends StatefulWidget {
   const DailyTask({Key? key}) : super(key: key);
-
   @override
   State<DailyTask> createState() => _DailyTaskState();
 }
 
 class _DailyTaskState extends State<DailyTask> {
-  // List<String> Subject = [""];
-  // List<String> Unit = [""];
-  // List<String> Divided_num = [""];
+  List<String> List_Weekly = ["", "", ""];
+  List<String> List_Daily = ["", "", ""];
+
+  String _Sub = "";
+  String _Uni = "";
+  String _Div = "";
+
   int map_daily_num = 0;
 
   Map map_daily_name = {
@@ -43,7 +46,7 @@ class _DailyTaskState extends State<DailyTask> {
                 hintText: "科目",
               ),
               onChanged: (_Subject) {
-                map_daily_name[map_daily_num]["Subject"] = _Subject;
+                _Sub = _Subject;
               },
             ),
             TextField(
@@ -53,7 +56,7 @@ class _DailyTaskState extends State<DailyTask> {
                 hintText: "単元",
               ),
               onChanged: (_Unit) {
-                map_daily_name[map_daily_num]["Unit"] = _Unit;
+                _Uni = _Unit;
               },
             ),
             TextField(
@@ -63,25 +66,26 @@ class _DailyTaskState extends State<DailyTask> {
                 hintText: "分割数",
               ),
               onChanged: (_Divided) {
-                map_daily_name[map_daily_num]["Divid"] = _Divided;
+                _Div = _Divided;
               },
             ),
             ElevatedButton(
               child: Text("登録"),
               onPressed: () {
-                print("$map_daily_num,${map_daily_name[map_daily_num]["Subject"]}");
-                map_daily_num++;
+                List_Daily.addAll([_Sub, _Uni, _Div]);
+                print(
+                    List_Daily.length);
               },
             ),
             ElevatedButton(
               child: Text("決定"),
               onPressed: () {
-                Navigator.pushNamed(
+                Navigator.push(
                   context,
-                  "/Home",
-                  arguments: map_daily_name,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Home(List_Weekly,List_Daily),
+                  ),
                 );
-                print("go home");
               },
             ),
           ],
