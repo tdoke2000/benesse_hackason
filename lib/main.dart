@@ -7,32 +7,63 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+  Map map_weekly_name = {
+    0: {"Subject": "", "Unit": "", "Divid": ""},
+    1: {"Subject": "", "Unit": "", "Divid": ""},
+    2: {"Subject": "", "Unit": "", "Divid": ""},
+    3: {"Subject": "", "Unit": "", "Divid": ""},
+    4: {"Subject": "", "Unit": "", "Divid": ""},
+    5: {"Subject": "", "Unit": "", "Divid": ""},
+    6: {"Subject": "", "Unit": "", "Divid": ""},
+    7: {"Subject": "", "Unit": "", "Divid": ""},
+    8: {"Subject": "", "Unit": "", "Divid": ""},
+    9: {"Subject": "", "Unit": "", "Divid": ""},
+    10: {"Subject": "", "Unit": "", "Divid": ""},
+  };
+  Map map_daily_name = {
+    0: {"Subject": "", "Unit": "", "Divid": ""},
+    1: {"Subject": "", "Unit": "", "Divid": ""},
+    2: {"Subject": "", "Unit": "", "Divid": ""},
+    3: {"Subject": "", "Unit": "", "Divid": ""},
+    4: {"Subject": "", "Unit": "", "Divid": ""},
+    5: {"Subject": "", "Unit": "", "Divid": ""},
+    6: {"Subject": "", "Unit": "", "Divid": ""},
+    7: {"Subject": "", "Unit": "", "Divid": ""},
+    8: {"Subject": "", "Unit": "", "Divid": ""},
+    9: {"Subject": "", "Unit": "", "Divid": ""},
+    10: {"Subject": "", "Unit": "", "Divid": ""},
+  };
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: Home(map_weekly_name,map_daily_name),
       routes: {
-        "/Home": (context) => const Home(),
+        "/Home": (context) => Home(map_weekly_name,map_daily_name),
         "/WeeklyTask": (BuildContext context) => WeeklyTask(),
-        "/DailyTask": (BuildContext context) => DailyTask(),
+        "/DailyTask": (BuildContext context) => DailyTask(map_weekly_name),
       },
     );
   }
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  Home(this.map_weekly_name, this.map_daily_name);
+  Map map_weekly_name;
+  Map map_daily_name;
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => _HomeState(map_weekly_name,map_daily_name);
 }
 
 class _HomeState extends State<Home> {
+  _HomeState(this.map_weekly_name,this.map_daily_name);
+  Map map_weekly_name;
+  Map map_daily_name;
   @override
   Widget build(BuildContext context) {
         //final String args = ModalRoute.of(context).settings.arguments;
-      final map_weekly = ModalRoute.of(context)!.settings.arguments as WeeklyTask;
-      final map_daily = ModalRoute.of(context)!.settings.arguments as DailyTask;
 
     return Scaffold(
       appBar: AppBar(
@@ -81,13 +112,13 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: ListView.builder(
-        itemCount: map_weekly.length, // moviesの長さだけ表示
+        itemCount: map_weekly_name.length, // moviesの長さだけ表示
         itemBuilder: (BuildContext context, int index) {
           return Container(
             child: ListTile(
-              title: Text(map_weekly[index]['title']), // タイトル
+              title: Text('${map_weekly_name[index]['Subject']}'), // タイトル
               subtitle: Text(
-                  '興行収入:${map_weekly[index]["box_office"]}億円'), // 興行収入
+                  '単元:${map_weekly_name[index]["Unit"]}'), // 興行収入
             ),
           );
         },
