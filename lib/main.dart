@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'ZenKakuGothicNew'),
       home: Home(map_weekly_name,map_daily_name),
       routes: {
         "/Home": (context) => Home(map_weekly_name,map_daily_name),
