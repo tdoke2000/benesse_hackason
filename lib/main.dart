@@ -1,106 +1,108 @@
 import 'package:flutter/material.dart';
-import 'next_page.dart';
+import 'weekly_task.dart';
+import 'daily_task.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  List<String> List_Weekly = ["","",""];
+  List<String> List_Daily=["","",""];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+
+      home: Home(List_Weekly,List_Daily),
+      routes: {
+        "/Home": (context) => Home(List_Weekly,List_Daily),
+        "/WeeklyTask": (BuildContext context) => WeeklyTask(),
+        "/DailyTask": (BuildContext context) => DailyTask(),
+      },
     );
   }
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  Home(this.List_Weekly, this.List_Daily);
+  List List_Weekly;
+  List List_Daily;
+  // Map List_Weekly;
+  // Map List_Daily;
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => _HomeState(List_Weekly,List_Daily);
 }
 
 class _HomeState extends State<Home> {
-  List<String> Subject = [""];
-  List<String> Unit = [""];
-  List<String> Divided_num = [""];
-  int map_num = 0;
-
-  Map map_name = {
-    0: {"Subject": "", "Unit": "", "Divid": ""},
-    1: {"Subject": "", "Unit": "", "Divid": ""},
-    2: {"Subject": "", "Unit": "", "Divid": ""},
-    3: {"Subject": "", "Unit": "", "Divid": ""},
-    4: {"Subject": "", "Unit": "", "Divid": ""},
-    5: {"Subject": "", "Unit": "", "Divid": ""},
-    6: {"Subject": "", "Unit": "", "Divid": ""},
-    7: {"Subject": "", "Unit": "", "Divid": ""},
-    8: {"Subject": "", "Unit": "", "Divid": ""},
-    9: {"Subject": "", "Unit": "", "Divid": ""},
-    10: {"Subject": "", "Unit": "", "Divid": ""},
-  };
-
+  _HomeState(this.List_Weekly,this.List_Daily);
+  List List_Weekly;
+  List List_Daily;
   @override
   Widget build(BuildContext context) {
+        //final String args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('top page'),
       ),
-      body: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "科目",
-              hintText: "科目",
-            ),
-            onChanged: (_Subject) {
-              map_name[map_num]["Subject"] = _Subject;
-            },
-          ),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "単元",
-              hintText: "単元",
-            ),
-            onChanged: (_Unit) {
-              map_name[map_num]["Unit"] = _Unit;
-            },
-          ),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "分割数",
-              hintText: "分割数",
-            ),
-            onChanged: (_Divided) {
-              map_name[map_num]["Divid"] = _Divided;
-            },
-          ),
-          ElevatedButton(
-              child: Text("登録"),
-              onPressed: () {
-                print("$map_num,${map_name[map_num]["Subject"]}");
-                map_num++;
-              }),
-          ElevatedButton(
-            child: Text("決定"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NextPage(),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'My App',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
                 ),
-              );
-              print("end");
-              map_num == 0;
-              setState(() {});
-            },
-          ),
-        ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('今日のto do選択'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text("今日のto do追加"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/DailyTask");
+              },
+            ),
+            ListTile(
+              title: Text('1週間のto doの作成'),
+              onTap: () {
+                Navigator.of(context).pushNamed("/WeeklyTask");
+              },
+            ),
+            ListTile(
+              title: Text('1週間のto doの編集'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
+
+      // body:
+      // ListView.builder(
+      //   itemCount: List_Weekly.length, // moviesの長さだけ表示
+      //   itemBuilder: (BuildContext context, int index) {
+      //     return Container(
+      //       child: ListTile(
+      //         title: Text('${List_Weekly[index]['Subject']}'), // タイトル
+      //         subtitle: Text(
+      //             '単元:${List_Weekly[index]["Unit"]}'), // 興行収入
+      //       ),
+      //     );
+      //   },
+      // ),
     );
   }
 }
