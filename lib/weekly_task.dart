@@ -9,12 +9,12 @@ class WeeklyTask extends StatefulWidget {
 }
 
 class _WeeklyTaskState extends State<WeeklyTask> {
-  List<String> Subject = [""];
-  List<String> Unit = [""];
-  List<String> Divided_num = [""];
-  int map_num = 0;
+  // List<String> Subject = [""];
+  // List<String> Unit = [""];
+  // List<String> Divided_num = [""];
+  int map_weekly_num = 0;
 
-  Map map_name = {
+  Map map_weekly_name = {
     0: {"Subject": "", "Unit": "", "Divid": ""},
     1: {"Subject": "", "Unit": "", "Divid": ""},
     2: {"Subject": "", "Unit": "", "Divid": ""},
@@ -43,7 +43,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                 hintText: "科目",
               ),
               onChanged: (_Subject) {
-                map_name[map_num]["Subject"] = _Subject;
+                map_weekly_name[map_weekly_num]["Subject"] = _Subject;
               },
             ),
             TextField(
@@ -53,7 +53,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                 hintText: "単元",
               ),
               onChanged: (_Unit) {
-                map_name[map_num]["Unit"] = _Unit;
+                map_weekly_name[map_weekly_num]["Unit"] = _Unit;
               },
             ),
             TextField(
@@ -63,26 +63,31 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                 hintText: "分割数",
               ),
               onChanged: (_Divided) {
-                map_name[map_num]["Divid"] = _Divided;
+                map_weekly_name[map_weekly_num]["Divid"] = _Divided;
               },
             ),
             ElevatedButton(
               child: Text("登録"),
               onPressed: () {
-                print("$map_num,${map_name[map_num]["Subject"]}");
-                map_num++;
+                print(
+                    "$map_weekly_num,${map_weekly_name[map_weekly_num]["Subject"]}");
+                map_weekly_num++;
               },
             ),
             ElevatedButton(
               child: Text("決定"),
               onPressed: () {
+                // Navigator.pushNamed(
+                //   context,
+                //   "/Home",
+                //   arguments: "map_weekly_name",
+                // );
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Home(map_weekly_name),
+                  ),
                 );
-                print("end");
-                map_num == 0;
-                setState(() {});
               },
             ),
           ],
@@ -91,4 +96,3 @@ class _WeeklyTaskState extends State<WeeklyTask> {
     );
   }
 }
-

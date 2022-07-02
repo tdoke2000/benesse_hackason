@@ -11,6 +11,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Home(),
+      routes: {
+        "/Home": (context) => const Home(),
+        "/WeeklyTask": (BuildContext context) => WeeklyTask(),
+        "/DailyTask": (BuildContext context) => DailyTask(),
+      },
     );
   }
 }
@@ -25,6 +30,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+        //final String args = ModalRoute.of(context).settings.arguments;
+      final map_weekly = ModalRoute.of(context)!.settings.arguments as WeeklyTask;
+      final map_daily = ModalRoute.of(context)!.settings.arguments as DailyTask;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('top page'),
@@ -53,23 +62,13 @@ class _HomeState extends State<Home> {
             ListTile(
               title: Text("今日のto do追加"),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DailyTask(),
-                  ),
-                );
+                Navigator.of(context).pushNamed("/DailyTask");
               },
             ),
             ListTile(
               title: Text('1週間のto doの作成'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => WeeklyTask(),
-                  ),
-                );
+                Navigator.of(context).pushNamed("/WeeklyTask");
               },
             ),
             ListTile(
@@ -80,6 +79,18 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+      ),
+      body: ListView.builder(
+        itemCount: map_weekly.length, // moviesの長さだけ表示
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            child: ListTile(
+              title: Text(map_weekly[index]['title']), // タイトル
+              subtitle: Text(
+                  '興行収入:${map_weekly[index]["box_office"]}億円'), // 興行収入
+            ),
+          );
+        },
       ),
     );
   }

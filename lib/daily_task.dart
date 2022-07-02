@@ -9,12 +9,12 @@ class DailyTask extends StatefulWidget {
 }
 
 class _DailyTaskState extends State<DailyTask> {
-  List<String> Subject = [""];
-  List<String> Unit = [""];
-  List<String> Divided_num = [""];
-  int map_num = 0;
+  // List<String> Subject = [""];
+  // List<String> Unit = [""];
+  // List<String> Divided_num = [""];
+  int map_daily_num = 0;
 
-  Map map_name = {
+  Map map_daily_name = {
     0: {"Subject": "", "Unit": "", "Divid": ""},
     1: {"Subject": "", "Unit": "", "Divid": ""},
     2: {"Subject": "", "Unit": "", "Divid": ""},
@@ -43,7 +43,7 @@ class _DailyTaskState extends State<DailyTask> {
                 hintText: "科目",
               ),
               onChanged: (_Subject) {
-                map_name[map_num]["Subject"] = _Subject;
+                map_daily_name[map_daily_num]["Subject"] = _Subject;
               },
             ),
             TextField(
@@ -53,7 +53,7 @@ class _DailyTaskState extends State<DailyTask> {
                 hintText: "単元",
               ),
               onChanged: (_Unit) {
-                map_name[map_num]["Unit"] = _Unit;
+                map_daily_name[map_daily_num]["Unit"] = _Unit;
               },
             ),
             TextField(
@@ -63,26 +63,25 @@ class _DailyTaskState extends State<DailyTask> {
                 hintText: "分割数",
               ),
               onChanged: (_Divided) {
-                map_name[map_num]["Divid"] = _Divided;
+                map_daily_name[map_daily_num]["Divid"] = _Divided;
               },
             ),
             ElevatedButton(
               child: Text("登録"),
               onPressed: () {
-                print("$map_num,${map_name[map_num]["Subject"]}");
-                map_num++;
+                print("$map_daily_num,${map_daily_name[map_daily_num]["Subject"]}");
+                map_daily_num++;
               },
             ),
             ElevatedButton(
               child: Text("決定"),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  "/Home",
+                  arguments: map_daily_name,
                 );
-                print("end");
-                map_num == 0;
-                setState(() {});
+                print("go home");
               },
             ),
           ],
