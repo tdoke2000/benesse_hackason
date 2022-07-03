@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
+List<List<String>> List_Weekly = [
+  ["", "", ""]
+];
+List<List<String>> List_Daily = [
+  ["", "", ""]
+];
+
 class DailyTask extends StatefulWidget {
   const DailyTask({Key? key}) : super(key: key);
   @override
@@ -8,12 +15,6 @@ class DailyTask extends StatefulWidget {
 }
 
 class _DailyTaskState extends State<DailyTask> {
-  List<List<String>> List_Weekly = [
-    ["", "", ""]
-  ];
-  List<List<String>> List_Daily = [
-    ["", "", ""]
-  ];
   List<String> List_cont = ["", "", ""];
 
   String _Sub = "";

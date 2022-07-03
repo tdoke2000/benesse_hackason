@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'weekly_task.dart';
 import 'daily_task.dart';
 
+List<List<String>> List_Weekly = [
+  ["", "", ""]
+];
+List<List<String>> List_Daily = [
+  ["", "", ""]
+];
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  List<List<String>> List_Weekly = [
-    ["", "", ""]
-  ];
-  List<List<String>> List_Daily = [
-    ["", "", ""]
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,12 +44,16 @@ class _HomeState extends State<Home> {
   final List<List<String>> List_Weekly;
   final List<List<String>> List_Daily;
 
-
   @override
   Widget build(BuildContext context) {
     //final String args = ModalRoute.of(context).settings.arguments;
-  final List<List<String>> List_Day;
-  final List<List<String>> List_wek;
+    List<List<String>> List_Day = [
+      ["", ""]
+    ];
+    List<List<String>> List_wek;
+
+    List_Day.addAll(List_Daily);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('top page'),
@@ -98,6 +102,9 @@ class _HomeState extends State<Home> {
       ),
       body: GridView.count(
         crossAxisCount: 2,
+        mainAxisSpacing: 5,
+        //crossAxisSpacing: 1,
+        childAspectRatio: 0.3,
         children: [
           ListView.builder(
             itemCount: List_Daily.length - 1, // moviesの長さだけ表示
@@ -106,18 +113,19 @@ class _HomeState extends State<Home> {
                 child: ListTile(
                   title: Text('科目${List_Daily[index + 1][0]}'), // 科目
                   subtitle: Text('単元:${List_Daily[index + 1][1]}'), // 単元
+                  trailing: Text('1/${List_Daily[index + 1][2]}'),
                 ),
               );
             },
           ),
-
           ListView.builder(
-            itemCount: List_Weekly.length-1, // moviesの長さだけ表示
+            itemCount: List_Weekly.length - 1, // moviesの長さだけ表示
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 child: ListTile(
-                  title: Text('科目${List_Weekly[index+1][0]}'), // 科目
-                  subtitle: Text('単元:${List_Weekly[index+1][1]}'), // 単元
+                  title: Text('科目${List_Weekly[index + 1][0]}'), // 科目
+                  subtitle: Text('単元:${List_Weekly[index + 1][1]}'), // 単元
+                  trailing: Text('1/${List_Weekly[index + 1][2]}'),
                 ),
               );
             },
