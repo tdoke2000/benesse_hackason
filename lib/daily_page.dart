@@ -15,6 +15,7 @@ class DailyPage extends StatefulWidget {
 class _DailyPageState extends State<DailyPage> {
   _DailyPageState(this.List_Daily);
   final List<List<String>> List_Daily;
+  var _isChecked = List.filled(20, false);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,19 @@ class _DailyPageState extends State<DailyPage> {
         itemCount: List_Daily.length - 1, // moviesの長さだけ表示
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            child: ListTile(
+            child: CheckboxListTile(
               title: Text('科目${List_Daily[index + 1][0]}'), // 科目
               subtitle: Text('単元:${List_Daily[index + 1][1]}'), // 単元
-              trailing: Text('1/${List_Daily[index + 1][2]}'),
+              //trailing: Text('1/${List_Daily[index + 1][2]}'),
+              value: _isChecked[index + 1],
+              onChanged: (bool? value) {
+                setState(
+                  () {
+                    _isChecked[index + 1] = value!;
+                  },
+                );
+              },
+              controlAffinity: ListTileControlAffinity.leading,
             ),
           );
         },

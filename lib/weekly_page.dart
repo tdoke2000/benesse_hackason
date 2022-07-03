@@ -15,6 +15,7 @@ class WeeklyPage extends StatefulWidget {
 class _WeeklyPageState extends State<WeeklyPage> {
   _WeeklyPageState(this.List_Weekly);
   final List<List<String>> List_Weekly;
+  var _isChecked = List.filled(20, false);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,32 @@ class _WeeklyPageState extends State<WeeklyPage> {
         itemCount: List_Weekly.length - 1, // moviesの長さだけ表示
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            child: ListTile(
+            child: CheckboxListTile(
+              // leading: Checkbox(
+              //   value: isChecked,
+              //   onChanged: (value) {
+              //     setState(
+              //       () {
+              //         isChecked = value!;
+              //         isChecked2 = value!;
+              //         isChecked3 = value!;
+              //       },
+              //     );
+              //   },
+              // ),
+
               title: Text('科目${List_Weekly[index + 1][0]}'), // 科目
               subtitle: Text('単元:${List_Weekly[index + 1][1]}'), // 単元
-              trailing: Text('1/${List_Weekly[index + 1][2]}'),
+              //trailing: Text('1/${List_Weekly[index + 1][2]}'),
+              value: _isChecked[index + 1],
+              onChanged: (bool? value) {
+                setState(
+                  () {
+                    _isChecked[index + 1] = value!;
+                  },
+                );
+              },
+              controlAffinity: ListTileControlAffinity.leading,
             ),
           );
         },
@@ -77,6 +100,19 @@ class _WeeklyPageState extends State<WeeklyPage> {
           ],
         ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.access_time),
+      //       label: 'timer',
+      //     ),
+      //   ],
+      //   onTap: (int index) {},
+      // ),
     );
   }
 }
