@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'weekly_task.dart';
 import 'daily_task.dart';
-import 'music.dart';
-import 'clock.dart';
+import 'study_time.dart';
+import 'notification.dart';
 
 void main() {
   runApp(MyApp());
@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
         "/Home": (context) => Home(List_Weekly,List_Daily),
         "/WeeklyTask": (BuildContext context) => WeeklyTask(),
         "/DailyTask": (BuildContext context) => DailyTask(),
-        "/Music": (BuildContext context) => AudioPlayerPage(List_Weekly,List_Daily),
-        "/Timer": (BuildContext context) => CountdownPage(List_Weekly,List_Daily),
+        "/Notification": (BuildContext context) => NotificationPage('Notification'),
+        "/Study_time": (BuildContext context) => StudyTimePage(List_Weekly,List_Daily),
       },
     );
   }
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
               title: Text('今日のto do選択'),
               onTap: () {
                 //Navigator.pop(context)
-                Navigator.of(context).pushNamed("/Timer"); //動作確認も兼ねて仮設定
+                Navigator.of(context).pushNamed("/Study_time"); //動作確認も兼ねて仮設定
               },
             ),
             ListTile(
@@ -119,7 +119,7 @@ class _HomeState extends State<Home> {
               title: Text('1週間のto doの編集'),
               onTap: () {
                 //Navigator.pop(context)
-                Navigator.of(context).pushNamed("/Music"); //動作確認も兼ねて仮設定
+                Navigator.of(context).pushNamed("/Notification"); //動作確認も兼ねて仮設定
               },
             ),
           ],
