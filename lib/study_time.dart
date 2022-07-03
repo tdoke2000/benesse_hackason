@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
 import 'main.dart';
+import 'daily_page.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 
 class StudyTimePage extends StatefulWidget {
   StudyTimePage(this.List_Weekly,this.List_Daily);
-  List<String> List_Weekly;
-  List<String> List_Daily;
+  List<List<String>> List_Weekly;
+  List<List<String>> List_Daily;
 
   @override
   State<StudyTimePage> createState() => _StudyTimePageState(List_Weekly,List_Daily);
@@ -16,8 +17,8 @@ class StudyTimePage extends StatefulWidget {
 class _StudyTimePageState extends State<StudyTimePage> {
   _StudyTimePageState(this.List_Weekly, this.List_Daily);
 
-  List<String> List_Weekly;
-  List<String> List_Daily;
+  List<List<String>> List_Weekly;
+  List<List<String>> List_Daily;
   late VideoPlayerController _controller;
 
   // カウンター
@@ -89,7 +90,7 @@ class _StudyTimePageState extends State<StudyTimePage> {
       Navigator.push(
       context,
       MaterialPageRoute(
-      builder: (BuildContext context) => Home(List_Weekly,List_Daily),
+      builder: (BuildContext context) => DailyPage(List_Daily),
       ),
       );
       },
