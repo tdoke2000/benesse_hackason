@@ -1,10 +1,8 @@
+import 'package:benesse_hackason/weekly_page.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
 List<List<String>> List_Weekly = [
-  ["", "", ""]
-];
-List<List<String>> List_Daily = [
   ["", "", ""]
 ];
 
@@ -79,7 +77,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        Home(List_Weekly, List_Daily),
+                        WeeklyPage(List_Weekly),
                   ),
                 );
               },
