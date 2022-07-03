@@ -8,8 +8,13 @@ class DailyTask extends StatefulWidget {
 }
 
 class _DailyTaskState extends State<DailyTask> {
-  List<String> List_Weekly = ["", "", ""];
-  List<String> List_Daily = ["", "", ""];
+  List<List<String>> List_Weekly = [
+    ["", "", ""]
+  ];
+  List<List<String>> List_Daily = [
+    ["", "", ""]
+  ];
+  List<String> List_cont = ["", "", ""];
 
   String _Sub = "";
   String _Uni = "";
@@ -59,8 +64,10 @@ class _DailyTaskState extends State<DailyTask> {
             ElevatedButton(
               child: Text("登録"),
               onPressed: () {
-                List_Daily.addAll([_Sub, _Uni, _Div]);
-                print(List_Daily.length);
+                List_cont.clear();
+                List_cont.addAll([_Sub, _Uni, _Div]);
+
+                List_Daily.add(List_cont);
               },
             ),
             ElevatedButton(

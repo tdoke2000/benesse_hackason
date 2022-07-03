@@ -7,16 +7,19 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List<String> List_Weekly = ["","",""];
-  List<String> List_Daily=["","",""];
+  List<List<String>> List_Weekly = [
+    ["", "", ""]
+  ];
+  List<List<String>> List_Daily = [
+    ["", "", ""]
+  ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-      home: Home(List_Weekly,List_Daily),
+      home: Home(List_Weekly, List_Daily),
       routes: {
-        "/Home": (context) => Home(List_Weekly,List_Daily),
+        "/Home": (context) => Home(List_Weekly, List_Daily),
         "/WeeklyTask": (BuildContext context) => WeeklyTask(),
         "/DailyTask": (BuildContext context) => DailyTask(),
       },
@@ -26,23 +29,27 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatefulWidget {
   Home(this.List_Weekly, this.List_Daily);
-  List List_Weekly;
-  List List_Daily;
+  final List<List<String>> List_Weekly;
+  final List<List<String>> List_Daily;
+
   // Map List_Weekly;
   // Map List_Daily;
 
   @override
-  State<Home> createState() => _HomeState(List_Weekly,List_Daily);
+  State<Home> createState() => _HomeState(List_Weekly, List_Daily);
 }
 
 class _HomeState extends State<Home> {
-  _HomeState(this.List_Weekly,this.List_Daily);
-  List List_Weekly;
-  List List_Daily;
+  _HomeState(this.List_Weekly, this.List_Daily);
+  final List<List<String>> List_Weekly;
+  final List<List<String>> List_Daily;
+
+
   @override
   Widget build(BuildContext context) {
-        //final String args = ModalRoute.of(context).settings.arguments;
-
+    //final String args = ModalRoute.of(context).settings.arguments;
+  final List<List<String>> List_Day;
+  final List<List<String>> List_wek;
     return Scaffold(
       appBar: AppBar(
         title: Text('top page'),
@@ -89,20 +96,34 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: [
+          ListView.builder(
+            itemCount: List_Daily.length - 1, // moviesの長さだけ表示
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                child: ListTile(
+                  title: Text('科目${List_Daily[index + 1][0]}'), // 科目
+                  subtitle: Text('単元:${List_Daily[index + 1][1]}'), // 単元
+                ),
+              );
+            },
+          ),
 
-      // body:
-      // ListView.builder(
-      //   itemCount: List_Weekly.length, // moviesの長さだけ表示
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return Container(
-      //       child: ListTile(
-      //         title: Text('${List_Weekly[index]['Subject']}'), // タイトル
-      //         subtitle: Text(
-      //             '単元:${List_Weekly[index]["Unit"]}'), // 興行収入
-      //       ),
-      //     );
-      //   },
-      // ),
+          ListView.builder(
+            itemCount: List_Weekly.length-1, // moviesの長さだけ表示
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                child: ListTile(
+                  title: Text('科目${List_Weekly[index+1][0]}'), // 科目
+                  subtitle: Text('単元:${List_Weekly[index+1][1]}'), // 単元
+                ),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
