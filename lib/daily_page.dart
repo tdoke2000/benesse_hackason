@@ -88,6 +88,19 @@ class _DailyPageState extends State<DailyPage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time),
+            label: 'timer',
+          ),
+        ],
+        onTap: (int index) {},
+      ),
     );
   }
 }
