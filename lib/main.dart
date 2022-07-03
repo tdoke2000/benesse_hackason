@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'weekly_task.dart';
 import 'daily_task.dart';
 import 'study_time.dart';
-import 'notification.dart';
 
 void main() {
   runApp(MyApp());
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
         "/Home": (context) => Home(List_Weekly,List_Daily),
         "/WeeklyTask": (BuildContext context) => WeeklyTask(),
         "/DailyTask": (BuildContext context) => DailyTask(),
-        "/Notification": (BuildContext context) => NotificationPage('Notification'),
+        //"/Notification": (BuildContext context) => NotificationPage('Notification'),
         "/Study_time": (BuildContext context) => StudyTimePage(List_Weekly,List_Daily),
       },
     );
