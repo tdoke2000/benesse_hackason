@@ -21,6 +21,7 @@ class _DailyPageState extends State<DailyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF8A00),
         title: Text("Daily task"),
       ),
       body: ListView.builder(
@@ -56,7 +57,8 @@ class _DailyPageState extends State<DailyPage> {
                 ),
               ),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                //color: Colors.blue,
+                color: Color(0xFFFF8A00),
               ),
             ),
             ListTile(

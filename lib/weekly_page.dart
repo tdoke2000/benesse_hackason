@@ -21,6 +21,7 @@ class _WeeklyPageState extends State<WeeklyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFFF8A00),
         title: Text("Weekly task"),
       ),
       body: ListView.builder(
@@ -69,7 +70,7 @@ class _WeeklyPageState extends State<WeeklyPage> {
                 ),
               ),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color(0xFFFF8A00),
               ),
             ),
             ListTile(
