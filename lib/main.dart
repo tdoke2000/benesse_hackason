@@ -3,6 +3,7 @@ import "daily_page.dart";
 import "weekly_page.dart";
 import 'weekly_task.dart';
 import 'daily_task.dart';
+import 'timer_music.dart';
 
 List<List<String>> List_Weekly = [
   ["", "", ""]
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         "/DailyPage": (context) => DailyPage(List_Daily),
         "/WeeklyTask": (BuildContext context) => WeeklyTask(),
         "/DailyTask": (BuildContext context) => DailyTask(),
+        "/timer_music": (BuildContext context) => StudyTimePage(List_Weekly,List_Daily),
       },
     );
   }

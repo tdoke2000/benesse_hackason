@@ -2,27 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
 import 'main.dart';
+import 'daily_page.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
-​
+
 class StudyTimePage extends StatefulWidget {
   StudyTimePage(this.List_Weekly,this.List_Daily);
   List<List<String>> List_Weekly;
   List<List<String>> List_Daily;
-​
+
   @override
   State<StudyTimePage> createState() => _StudyTimePageState(List_Weekly,List_Daily);
 }
-​
+
 class _StudyTimePageState extends State<StudyTimePage> {
   _StudyTimePageState(this.List_Weekly, this.List_Daily);
-​
+
   List<List<String>> List_Weekly;
   List<List<String>> List_Daily;
   late VideoPlayerController _controller;
-​
+
   // カウンター
   int _counter = 100;
-​
+
   @override
   void initState() {
     super.initState();
@@ -99,7 +100,7 @@ class _StudyTimePageState extends State<StudyTimePage> {
     ),
     );
   }
-​
+
     @override
     void dispose() {
     _controller.dispose();
@@ -108,37 +109,37 @@ class _StudyTimePageState extends State<StudyTimePage> {
 }
 class _ProgressText extends StatefulWidget {
   final VideoPlayerController controller;
-​
+
   const _ProgressText({
     Key? key,
     required this.controller,
   }) : super(key: key);
-​
+
   @override
   __ProgressTextState createState() => __ProgressTextState();
 }
-​
+
 class __ProgressTextState extends State<_ProgressText> {
   late VoidCallback _listener;
-​
+
   __ProgressTextState() {
     _listener = () {
       setState(() {});
     };
   }
-​
+
   @override
   void initState() {
     super.initState();
     widget.controller.addListener(_listener);
   }
-​
+
   @override
   void deactivate() {
     widget.controller.removeListener(_listener);
     super.deactivate();
   }
-​
+
   @override
   Widget build(BuildContext context) {
     final String position = widget.controller.value.position.toString();

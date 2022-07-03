@@ -71,7 +71,7 @@ class _WeeklyPageState extends State<WeeklyPage> {
             ListTile(
               title: Text('1週間のto doの編集'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.of(context).pushNamed("/timer_music");
               },
             ),
           ],

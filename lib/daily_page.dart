@@ -72,7 +72,7 @@ class _DailyPageState extends State<DailyPage> {
             ListTile(
               title: Text('1週間のto doの編集'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.of(context).pushNamed("/timer_music");
               },
             ),
           ],
