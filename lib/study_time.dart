@@ -46,7 +46,8 @@ class _StudyTimePageState extends State<StudyTimePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('タイマー'),
+        backgroundColor: Color(0xFFFF8A00),
+        title: const Text('タイマー・音楽'),
       ),
       body: Column(
         children: [

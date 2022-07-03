@@ -27,6 +27,7 @@ class _WeeklyTaskState extends State<WeeklyTask> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFFFF8A00),
           title: Text('Weekly Task'),
         ),
         body: Column(

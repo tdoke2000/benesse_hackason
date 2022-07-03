@@ -26,6 +26,7 @@ class _DailyTaskState extends State<DailyTask> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFFFF8A00),
           title: Text('Daily Task'),
         ),
         body: Column(
