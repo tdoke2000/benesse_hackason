@@ -4,14 +4,16 @@ import 'dart:async';
 import 'main.dart';
 import 'daily_page.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+import 'image_button.dart';
 
 class StudyTimePage extends StatefulWidget {
-  StudyTimePage(this.List_Weekly,this.List_Daily);
+  StudyTimePage(this.List_Weekly, this.List_Daily);
   List<List<String>> List_Weekly;
   List<List<String>> List_Daily;
 
   @override
-  State<StudyTimePage> createState() => _StudyTimePageState(List_Weekly,List_Daily);
+  State<StudyTimePage> createState() =>
+      _StudyTimePageState(List_Weekly, List_Daily);
 }
 
 class _StudyTimePageState extends State<StudyTimePage> {
@@ -42,72 +44,117 @@ class _StudyTimePageState extends State<StudyTimePage> {
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(
-      backgroundColor: Color(0xFFFF8A00),
-      title: const Text('タイマー'),
-    ),
-    body: Column(
-      children: [
-      Text(_counter.toString()),
-      Container(
-      padding: EdgeInsets.all(16),
-      child: Icon(Icons.music_video, size: 256),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFF8A00),
+        title: const Text('タイマー'),
       ),
-      VideoProgressIndicator(
-      _controller,
-      allowScrubbing: true,
+      body: Column(
+        children: [
+          Text(_counter.toString()),
+          Container(
+            padding: EdgeInsets.all(16),
+            child: Icon(Icons.music_video, size: 256),
+          ),
+          VideoProgressIndicator(
+            _controller,
+            allowScrubbing: true,
+          ),
+          _ProgressText(controller: _controller),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  _controller
+                      .seekTo(Duration.zero)
+                      .then((_) => _controller.play());
+                },
+                icon: Icon(Icons.refresh),
+              ),
+              IconButton(
+                onPressed: () {
+                  _controller.play();
+                },
+                icon: Icon(Icons.play_arrow),
+              ),
+              IconButton(
+                onPressed: () {
+                  _controller.pause();
+                },
+                icon: Icon(Icons.pause),
+              ),
+              ElevatedButton(
+                child: Text("決定"),
+                onPressed: () {
+                  _controller.pause();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => DailyPage(List_Daily),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 50.0,
+                child: Button(
+                  filename: Image.asset('images/leaf.png'),
+                ),
+              ),
+              Container(
+                height: 50.0,
+                child: Button(
+                  filename: Image.asset('images/rain.png'),
+                ),
+              ),
+              Container(
+                height: 50.0,
+                child: Button(
+                  filename: Image.asset('images/slow.png'),
+                ),
+              ),
+              Container(
+                height: 50.0,
+                child: Button(
+                  filename: Image.asset('images/up.png'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
-      _ProgressText(controller: _controller),
-      Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-      IconButton(
-      onPressed: () {
-      _controller
-          .seekTo(Duration.zero)
-          .then((_) => _controller.play());
-      },
-      icon: Icon(Icons.refresh),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time),
+            label: 'timer',
+          ),
+        ],
+        onTap: (int index) {},
       ),
-      IconButton(
-      onPressed: () {
-      _controller.play();
-      },
-      icon: Icon(Icons.play_arrow),
-      ),
-      IconButton(
-      onPressed: () {
-      _controller.pause();
-      },
-      icon: Icon(Icons.pause),
-      ),
-      ElevatedButton(
-      child: Text("決定"),
-      onPressed: () {
-      _controller.pause();
-      Navigator.push(
-      context,
-      MaterialPageRoute(
-      builder: (BuildContext context) => DailyPage(List_Daily),
-      ),
-      );
-      },
-      ),
-      ],
-      ), ],
-    ),
     );
   }
 
-    @override
-    void dispose() {
+  @override
+  void dispose() {
     _controller.dispose();
     super.dispose();
-    }
+  }
 }
+
 class _ProgressText extends StatefulWidget {
   final VideoPlayerController controller;
 

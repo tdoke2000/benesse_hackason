@@ -100,19 +100,19 @@ class _WeeklyPageState extends State<WeeklyPage> {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.access_time),
-      //       label: 'timer',
-      //     ),
-      //   ],
-      //   onTap: (int index) {},
-      // ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time),
+            label: 'timer',
+          ),
+        ],
+        onTap: (int index) {},
+      ),
     );
   }
 }
